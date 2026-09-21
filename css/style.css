@@ -23,7 +23,7 @@
   --borda:      #E3D8CF;
   --escuro:     #2B2320;
   --rodape:     #17120F;   /* único bloco realmente escuro, no fim */
-  --foto-fundo: #FFFFFF;   /* fundo do painel da foto do hero */
+  --foto-fundo: #D1B5A0;   /* fundo do painel da foto do hero */
 
   --fonte: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 
@@ -72,7 +72,7 @@ section { padding: 64px 0; }
   font-size: 40px;
 }
 
-h1.display { font-size: 48px; }
+h1.display { font-size: 48px; font-weight: 200; letter-spacing: 0.06em; }
 
 .display em { font-style: normal; font-weight: 400; color: var(--brand); }
 
@@ -244,14 +244,15 @@ p { margin: 0 0 14px; }
 
 .hero-painel .marca { align-self: flex-start; font-size: 22px; }
 
+/* seta solta, sem círculo — como no site de referência */
 .seta {
-  width: 60px; height: 60px;
-  border: 1px solid rgba(255,255,255,.6);
-  border-radius: 50%;
+  width: 56px; height: 56px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
+  font-size: 30px;
+  font-weight: 200;
+  line-height: 1;
   text-decoration: none;
-  color: #fff;
+  color: rgba(255,255,255,.85);
   flex: 0 0 auto;
 }
 
@@ -568,7 +569,7 @@ p { margin: 0 0 14px; }
     flex-direction: column;
     justify-content: center;
     padding: 72px 56px;
-    max-width: 44%;
+    max-width: 50%;
   }
 
   /* a foto vira um painel vertical no centro, passando por cima da diagonal */
@@ -585,11 +586,24 @@ p { margin: 0 0 14px; }
     box-shadow: 0 24px 60px rgba(26,26,26,.22);
   }
 
+  /* divisão reta entre o lado claro e a cor chapada, sem diagonal */
   .hero-painel {
     flex: 1;
-    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
-    padding: 64px 64px 64px 110px;
+    padding: 64px;
     justify-content: space-between;
+  }
+
+  /* retângulo deslocado atrás da foto, como uma moldura fora de registro */
+  .hero::after {
+    content: '';
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    left: 53%;
+    width: min(28vw, 380px);
+    height: min(78vh, 660px);
+    transform: translate(-50%, -50%) translate(-20px, 28px);
+    background: var(--rosa);
   }
   .hero-painel .marca { align-self: flex-end; }
   .seta { align-self: flex-end; }
