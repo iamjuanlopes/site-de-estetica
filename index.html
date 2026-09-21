@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2E2723">
+<meta name="description" content="Clínica de estética em Resende – RJ. Limpeza de pele, protocolo facial, drenagem e massagem, com horário marcado e atendimento individual.">
+<title>Espaço Aurora | Estética Avançada em Resende – RJ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<main>
+
+<header class="topo">
+  <div class="container topo-linha">
+    <a class="marca" href="#" data-marca></a>
+    <nav class="topo-links">
+      <a class="topo-link" href="#servicos">Serviços</a>
+      <a class="topo-link" href="#espaco">O espaço</a>
+      <a class="topo-link" href="#duvidas">Dúvidas</a>
+      <a class="topo-link" href="#contato">Contato</a>
+    </nav>
+    <a class="btn btn-principal" data-wpp data-wpp-icone>Agendar</a>
+  </div>
+</header>
+
+<section class="hero" style="padding:0">
+  <img class="hero-foto" id="hero-foto" src="img/hero.jpg" alt="Atendimento facial no Espaço Aurora">
+  <div class="hero-veu"></div>
+  <div class="hero-conteudo">
+    <div class="container">
+      <h1>Sua pele merece<br>um tempo calmo.</h1>
+      <p>Estética facial e corporal em Resende, com horário marcado, atendimento individual e protocolo montado pra sua pele — não pro pacote da semana.</p>
+      <div class="hero-botoes">
+        <a class="btn btn-principal" data-wpp="Oi! Queria marcar uma avaliação." data-wpp-icone>Marcar avaliação</a>
+        <a class="btn btn-claro" href="#servicos">Ver serviços e preços</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="selos">
+  <div class="container">
+    <div class="selos-grade" id="selos"></div>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="container">
+    <div class="intro">
+      <p class="rotulo">Serviços</p>
+      <h2>O que a gente faz aqui</h2>
+      <p>Preço fechado e tempo real de cada sessão. Se na avaliação a gente vir que outro caminho resolve melhor, a gente diz.</p>
+    </div>
+    <div class="servicos-grade" id="servicos-grade"></div>
+    <p class="aviso-preco">Pacotes de 4 ou mais sessões têm condição própria — pergunte no WhatsApp.</p>
+  </div>
+</section>
+
+<section class="espaco" id="espaco">
+  <div class="container">
+    <div class="espaco-grade">
+      <img class="espaco-foto" id="espaco-foto" src="img/espaco.jpg" loading="lazy" alt="Sala de atendimento do Espaço Aurora">
+      <div>
+        <p class="rotulo">O espaço</p>
+        <h2>Uma sala de cada vez</h2>
+        <p>O Espaço Aurora atende uma pessoa por vez, com hora marcada de verdade. Ninguém espera sentado na recepção enquanto outra sessão atrasa.</p>
+        <ul class="lista-check">
+          <li>Atendimento individual, com a porta fechada</li>
+          <li>Material descartável e esterilização a cada sessão</li>
+          <li>Produtos profissionais registrados na Anvisa</li>
+          <li>Esteticista formada, com 8 anos de clínica</li>
+        </ul>
+        <a class="btn btn-principal" data-wpp="Oi! Queria conhecer o espaço." data-wpp-icone>Falar no WhatsApp</a>
+      </div>
+    </div>
+    <div class="galeria" id="galeria"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="intro">
+      <p class="rotulo">Como funciona</p>
+      <h2>Do primeiro contato ao horário fixo</h2>
+    </div>
+    <div class="passos" id="passos"></div>
+  </div>
+</section>
+
+<section class="depoimentos">
+  <div class="container">
+    <div class="intro">
+      <p class="rotulo">Quem já passou por aqui</p>
+      <h2>O que as clientes contam</h2>
+    </div>
+    <div class="depo-grade" id="depoimentos"></div>
+  </div>
+</section>
+
+<section id="duvidas">
+  <div class="container">
+    <div class="intro">
+      <p class="rotulo">Dúvidas</p>
+      <h2>Perguntas que sempre chegam</h2>
+    </div>
+    <div id="faq"></div>
+  </div>
+</section>
+
+<section class="contato" id="contato">
+  <div class="container">
+    <div class="intro">
+      <p class="rotulo">Contato</p>
+      <h2>Vem conversar</h2>
+      <p>O jeito mais rápido é o WhatsApp — a gente responde durante o horário de atendimento.</p>
+    </div>
+    <div class="contato-grade">
+      <div class="contato-bloco">
+        <h3>Onde ficamos</h3>
+        <p data-endereco></p>
+        <a class="btn btn-contorno" data-mapa>Abrir no Google Maps</a>
+      </div>
+      <div class="contato-bloco">
+        <h3>Horário de atendimento</h3>
+        <ul class="horarios" id="horarios"></ul>
+        <a class="btn btn-principal" data-wpp data-wpp-icone>Agendar pelo WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="container">
+    <a class="marca" href="#" data-marca></a>
+    <div class="rodape-linha">
+      <p data-endereco></p>
+      <p>WhatsApp <span data-telefone></span> · <a data-instagram href="#"></a></p>
+      <p style="margin-top:14px">© <span data-ano></span> Espaço Aurora. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<a class="wpp-flutuante" data-wpp aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.13h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.17 8.17 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.83 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.21-8.24 8.21Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+</a>
+
+<script src="data/clinica.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
