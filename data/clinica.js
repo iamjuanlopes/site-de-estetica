@@ -14,6 +14,8 @@ const CLINICA = {
   whatsapp: '5524999990000',
   whatsappVisivel: '(24) 99999-0000',
   instagram: 'espacoaurora.estetica',
+  facebook: '',                      // deixe vazio se a clínica não tiver
+  desenvolvidoPor: 'Éden',           // assinatura no rodapé
 
   endereco: 'Rua das Palmeiras, 120 – Centro',
   cidadeUf: 'Resende – RJ, 27510-000',
