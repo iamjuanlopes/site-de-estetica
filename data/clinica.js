@@ -15,6 +15,16 @@ const CLINICA = {
   whatsappVisivel: '(24) 99999-0000',
   instagram: 'espacoaurora.estetica',
   facebook: '',                      // deixe vazio se a clínica não tiver
+
+  /* Foto grande do topo, dentro de img/. A versão menor é opcional e serve pra
+     o celular não baixar a foto grande — o número no fim do nome é a largura
+     dela em pixels. Se a foto for recorte em PNG sem fundo, o site mostra a
+     pessoa inteira sobre a cor do painel (--foto-fundo no css). */
+  fotoHero: 'hero-nova.jpg',
+  fotoHeroPequena: 'hero-nova-500.jpg',
+  /* true quando a foto já vem com fundo liso ou recortada: aí a pessoa
+     aparece inteira, sem corte. false pra foto comum, que preenche o painel. */
+  fotoHeroRecorte: true,
   desenvolvidoPor: 'Éden',           // assinatura no rodapé
 
   endereco: 'Rua das Palmeiras, 120 – Centro',

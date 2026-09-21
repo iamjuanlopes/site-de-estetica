@@ -206,10 +206,22 @@ function montarRedes() {
 
 function montarHero() {
   const h = document.getElementById('hero-foto');
-  h.src = foto('img/hero.jpg');
-  if (!window.IMAGENS) {
-    h.srcset = 'img/hero-800.jpg 800w, img/hero.jpg 1600w';
-    h.sizes = '100vw';
+  const arquivo = CLINICA.fotoHero || 'hero.jpg';
+  const caminho = 'img/' + arquivo;
+
+  h.src = foto(caminho);
+
+  /* recorte ou fundo liso: a pessoa aparece inteira sobre a cor do painel,
+     em vez de ser cortada pra preencher o retângulo */
+  if (CLINICA.fotoHeroRecorte || /\.png$/i.test(arquivo)) h.classList.add('recorte');
+
+  /* versão menor pro celular: a largura vem do número no fim do nome */
+  const pequena = CLINICA.fotoHeroPequena;
+  const larguraPequena = pequena && (pequena.match(/-(\d+)\.jpe?g$/i) || [])[1];
+
+  if (!window.IMAGENS && larguraPequena) {
+    h.srcset = 'img/' + pequena + ' ' + larguraPequena + 'w, ' + caminho + ' 1600w';
+    h.sizes = '(min-width: 1000px) 380px, 100vw';
   }
 }
 
