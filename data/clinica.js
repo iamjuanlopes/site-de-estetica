@@ -50,48 +50,44 @@ const CLINICA = {
 };
 
 /* Serviços — a ordem aqui é a ordem na página.
+   A página não mostra preço de propósito: valor se conversa no WhatsApp,
+   depois da avaliação.
    foto: nome do arquivo em img/ (sem a versão -480, que o site monta sozinho) */
 const SERVICOS = [
   {
     nome: 'Limpeza de pele profunda',
     foto: 'serv-limpeza',
     duracao: '1h20',
-    preco: 'R$ 180',
     texto: 'Extração, vapor de ozônio, máscara calmante e protetor. Indicada pra pele oleosa, cravos e poros dilatados.',
   },
   {
     nome: 'Protocolo facial anti-idade',
     foto: 'serv-facial',
     duracao: '1h',
-    preco: 'R$ 250',
     texto: 'Peeling suave, microagulhamento e ativos de vitamina C. Trabalha linhas finas, manchas e firmeza.',
   },
   {
     nome: 'Drenagem linfática',
     foto: 'serv-drenagem',
     duracao: '50 min',
-    preco: 'R$ 140',
     texto: 'Reduz inchaço e retenção de líquido. Muito procurada no pós-operatório e nas semanas antes de um evento.',
   },
   {
     nome: 'Massagem relaxante',
     foto: 'serv-massagem',
     duracao: '1h',
-    preco: 'R$ 150',
     texto: 'Óleo morno, pressão ajustada ao seu corpo e foco em pescoço, ombros e lombar — onde o estresse trava.',
   },
   {
     nome: 'Pedras quentes',
     foto: 'serv-pedras',
     duracao: '1h10',
-    preco: 'R$ 190',
     texto: 'Pedras aquecidas sobre os pontos de tensão. Solta a musculatura mais fundo do que a massagem tradicional.',
   },
   {
     nome: 'Design de sobrancelhas',
     foto: 'serv-sobrancelha',
     duracao: '40 min',
-    preco: 'R$ 70',
     texto: 'Mapeamento do formato do seu rosto, limpeza com pinça e henna opcional. Sai pronta pra semana.',
   },
 ];

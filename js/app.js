@@ -55,19 +55,16 @@ function montarServicos() {
     const grande = 'img/' + s.foto + '.jpg';
     const pequena = 'img/' + s.foto + '-480.jpg';
     const srcset = window.IMAGENS ? '' : ' srcset="' + pequena + ' 480w, ' + grande + ' 800w" sizes="(min-width:900px) 360px, (min-width:620px) 50vw, 100vw"';
-    const mensagem = 'Oi! Queria agendar ' + s.nome.toLowerCase() + '.';
 
+    /* sem preço e sem botão de agendar no card: a conversa sobre valor
+       acontece no WhatsApp, depois da avaliação */
     return (
       '<article class="servico">' +
         '<img src="' + foto(grande) + '"' + srcset + ' loading="lazy" alt="' + s.nome + '">' +
         '<div class="servico-corpo">' +
+          '<span class="servico-duracao">' + s.duracao + '</span>' +
           '<h3>' + s.nome + '</h3>' +
           '<p>' + s.texto + '</p>' +
-          '<div class="servico-meta">' +
-            '<span class="servico-preco">' + s.preco + '</span>' +
-            '<span class="servico-duracao">' + s.duracao + '</span>' +
-          '</div>' +
-          '<a class="btn btn-contorno" href="' + linkWpp(mensagem) + '" target="_blank" rel="noopener">Agendar</a>' +
         '</div>' +
       '</article>'
     );

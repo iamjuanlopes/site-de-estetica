@@ -11,13 +11,18 @@
   --brand:      #D53B01;   /* cor chapada dos painéis */
   --brand-dark: #A82E01;
   --brand-claro:#FFF2E8;   /* texto sobre a cor chapada */
-  --ink:        #1A1A1A;
+  /* nada de preto puro nas seções de cima: o tom escuro é um marrom fechado,
+     e o preto de verdade só aparece no rodapé, no fim da página */
+  --ink:        #2B2320;
   --cream:      #F4EFE9;
+  --bege:       #EDE1D6;   /* blocos que antes eram escuros */
+  --rosa:       #F6E8E3;   /* rosa muito claro, pro segundo tom */
   --branco:     #FFFFFF;
-  --cinza:      #737373;
-  --cinza-claro:#A3A3A3;
-  --borda:      #E5E5E5;
-  --escuro:     #171717;
+  --cinza:      #7A6C64;
+  --cinza-claro:#A79A92;
+  --borda:      #E3D8CF;
+  --escuro:     #2B2320;
+  --rodape:     #17120F;   /* único bloco realmente escuro, no fim */
   --foto-fundo: #FFFFFF;   /* fundo do painel da foto do hero */
 
   --fonte: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
@@ -116,19 +121,19 @@ p { margin: 0 0 14px; }
 
 .btn + .btn { margin-top: 10px; }
 
-.btn-escuro   { background: var(--escuro); color: #fff; }
+.btn-escuro   { background: var(--cream); color: var(--brand-dark); }
 .btn-brand    { background: var(--brand); color: #fff; }
 .btn-contorno { background: transparent; color: var(--escuro); border-color: var(--ink); }
 .btn-claro    { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
 
 @media (hover: hover) {
-  .btn-escuro:hover   { background: #000; }
+  .btn-escuro:hover   { background: #fff; }
   .btn-brand:hover    { opacity: .9; }
   .btn-contorno:hover { background: var(--escuro); color: #fff; }
   .btn-claro:hover    { background: rgba(255,255,255,.14); }
   .servico:hover      { box-shadow: 0 10px 28px rgba(26,26,26,.10); }
   .topo-link:hover    { color: #fff; }
-  .rodape-nav a:hover { color: var(--escuro); }
+  .rodape-nav a:hover { color: #fff; }
 }
 
 .icone-wpp { width: 17px; height: 17px; flex: 0 0 auto; fill: currentColor; }
@@ -262,7 +267,7 @@ p { margin: 0 0 14px; }
 
 /* ---------- selos -------------------------------------------------------- */
 
-.selos { background: var(--escuro); color: #fff; padding: 36px 0; }
+.selos { background: var(--bege); padding: 36px 0; }
 .selos-grade { display: grid; gap: 22px; }
 .selo b {
   display: block;
@@ -272,7 +277,7 @@ p { margin: 0 0 14px; }
   color: var(--brand);
   margin-bottom: 6px;
 }
-.selo span { font-size: 13px; color: var(--cinza-claro); }
+.selo span { font-size: 13px; color: var(--cinza); }
 
 /* ---------- sobre -------------------------------------------------------- */
 
@@ -280,17 +285,17 @@ p { margin: 0 0 14px; }
 .sobre-texto { padding: 60px var(--margem); }
 
 /* o card escuro sobre o texto institucional */
-.card-escuro {
-  background: var(--escuro);
-  color: #D4D4D4;
+.card-destaque {
+  background: var(--rosa);
+  color: var(--ink);
   padding: 32px 28px;
   max-width: 460px;
   margin-top: 28px;
 }
-.card-escuro p { font-size: 14px; line-height: 1.75; margin-bottom: 22px; }
-.card-escuro .lista-check { margin-bottom: 24px; }
-.card-escuro .lista-check li { color: #D4D4D4; }
-.card-escuro .lista-check li::before { border-color: var(--brand); }
+.card-destaque p { font-size: 14px; line-height: 1.75; margin-bottom: 22px; color: var(--cinza); }
+.card-destaque .lista-check { margin-bottom: 24px; }
+.card-destaque .lista-check li { color: var(--ink); }
+.card-destaque .lista-check li::before { border-color: var(--brand); }
 
 .lista-check { list-style: none; padding: 0; margin: 0 0 20px; }
 .lista-check li {
@@ -329,22 +334,15 @@ p { margin: 0 0 14px; }
 .servico-corpo { padding: 26px 24px 24px; display: flex; flex-direction: column; flex: 1; }
 .servico-corpo p { font-size: 14px; color: var(--cinza); line-height: 1.7; flex: 1; }
 
-.servico-meta {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 18px 0 16px;
-  padding-top: 16px;
-  border-top: 1px solid var(--borda);
-}
-.servico-preco { font-size: 28px; font-weight: 200; color: var(--escuro); }
+/* a duração vira um rótulo pequeno acima do nome do serviço */
 .servico-duracao {
+  display: block;
   font-size: 11px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--brand);
   font-weight: 600;
+  margin-bottom: 8px;
 }
 
 .aviso-preco { font-size: 13px; color: var(--cinza); margin: 26px 0 0; }
@@ -371,24 +369,23 @@ p { margin: 0 0 14px; }
 
 /* ---------- depoimentos -------------------------------------------------- */
 
-.depoimentos { background: var(--escuro); }
-.depoimentos .display { color: #fff; }
-.depoimentos .rotulo { color: var(--cinza-claro); }
+.depoimentos { background: var(--bege); }
 
 .depo-grade { display: grid; gap: 18px; }
 .depo {
-  border: 1px solid #333;
+  border: 1px solid var(--borda);
+  background: var(--branco);
   padding: 28px 24px;
   margin: 0;
 }
-.depo p { font-size: 15px; line-height: 1.75; color: #D4D4D4; margin-bottom: 18px; }
+.depo p { font-size: 15px; line-height: 1.75; color: var(--cinza); margin-bottom: 18px; }
 .depo footer {
   font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--cinza-claro);
+  color: var(--cinza);
 }
-.depo footer b { color: #fff; font-weight: 600; }
+.depo footer b { color: var(--ink); font-weight: 600; }
 .estrelas { color: var(--brand); letter-spacing: 4px; font-size: 12px; margin-bottom: 14px; }
 
 /* ---------- faq ---------------------------------------------------------- */
@@ -455,17 +452,17 @@ p { margin: 0 0 14px; }
 
 /* ---------- rodapé ------------------------------------------------------- */
 
-.rodape { background: var(--branco); padding: 52px 0 calc(92px + env(safe-area-inset-bottom)); }
+.rodape { background: var(--rodape); color: rgba(244,239,233,.66); padding: 52px 0 calc(92px + env(safe-area-inset-bottom)); }
 
 .rodape-topo { display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center; }
-.rodape .marca { color: var(--escuro); font-size: 22px; }
+.rodape .marca { color: var(--cream); font-size: 22px; }
 
 .rodape-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; }
 .rodape-nav a {
   font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--cinza);
+  color: rgba(244,239,233,.66);
   text-decoration: none;
   transition: color .2s;
   padding: 14px 4px;            /* alvo de toque de 44px+ no celular */
@@ -476,14 +473,14 @@ p { margin: 0 0 14px; }
 .redes a {
   width: 44px; height: 44px;
   border-radius: 50%;
-  background: var(--escuro);
+  background: var(--brand);
   color: #fff;
   display: flex; align-items: center; justify-content: center;
   text-decoration: none;
 }
 .redes svg { width: 18px; height: 18px; fill: currentColor; }
 
-.rodape hr { border: none; border-top: 1px solid var(--borda); margin: 34px 0; }
+.rodape hr { border: none; border-top: 1px solid rgba(255,255,255,.14); margin: 34px 0; }
 
 .rodape-fino {
   display: flex;
@@ -492,7 +489,7 @@ p { margin: 0 0 14px; }
   text-align: center;
   font-size: 11px;
   line-height: 1.7;
-  color: var(--cinza);
+  color: rgba(244,239,233,.52);
 }
 .rodape-fino p { margin: 0; }
 
