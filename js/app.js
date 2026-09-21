@@ -155,6 +155,93 @@ function montarContato() {
   });
 }
 
+/* ---------- segundo banner ------------------------------------------------ */
+
+function montarSlide2() {
+  const s = CLINICA.slide2;
+  const grande = 'img/' + s.foto;
+  const srcset = (window.IMAGENS || !s.fotoPequena)
+    ? ''
+    : ' srcset="img/' + s.fotoPequena + ' 700w, ' + grande + ' 1200w" sizes="100vw"';
+
+  /* a barra | no título vira quebra de linha */
+  const titulo = s.titulo.split('|').join('<br>');
+
+  document.getElementById('slide-cheio').innerHTML =
+    '<img class="slide-foto" src="' + foto(grande) + '"' + srcset + ' alt="">' +
+    '<div class="slide-veu"></div>' +
+    '<a class="marca marca-cheio" href="#inicio" data-marca></a>' +
+    '<div class="slide-cheio-texto">' +
+      '<p class="display slide-titulo">' + titulo + '</p>' +
+      '<p class="slide-sub">' + s.subtitulo + '</p>' +
+      '<a class="btn btn-escuro" data-wpp="' + s.mensagem + '" data-wpp-icone>' + s.botao + '</a>' +
+    '</div>';
+}
+
+/* ---------- carrossel do topo --------------------------------------------- */
+
+function montarCarrossel() {
+  const trilho = document.getElementById('hero-trilho');
+  const seta = document.getElementById('hero-seta');
+  const pontos = document.getElementById('hero-pontos');
+  const slides = trilho.querySelectorAll('.hero-slide');
+
+  pontos.innerHTML = Array.from(slides)
+    .map(function (_, i) {
+      return '<button class="ponto" data-ir="' + i + '" aria-label="Banner ' + (i + 1) + '"></button>';
+    })
+    .join('');
+
+  function irPara(i) {
+    trilho.scrollTo({ left: trilho.clientWidth * i, behavior: 'smooth' });
+  }
+
+  function atual() {
+    return Math.round(trilho.scrollLeft / trilho.clientWidth);
+  }
+
+  function marcar() {
+    const i = atual();
+    pontos.querySelectorAll('.ponto').forEach(function (p, n) {
+      p.classList.toggle('ativo', n === i);
+    });
+  }
+
+  /* a seta avança e volta pro primeiro depois do último */
+  seta.addEventListener('click', function () {
+    irPara((atual() + 1) % slides.length);
+  });
+
+  pontos.addEventListener('click', function (e) {
+    const b = e.target.closest('[data-ir]');
+    if (b) irPara(Number(b.dataset.ir));
+  });
+
+  trilho.addEventListener('scroll', marcar, { passive: true });
+  window.addEventListener('resize', marcar);
+  marcar();
+}
+
+/* ---------- topo que só aparece ao rolar ---------------------------------- */
+
+function montarTopoFlutuante() {
+  const topo = document.querySelector('.topo');
+  const menu = document.getElementById('menu-celular');
+  const wpp = document.querySelector('.wpp-flutuante');
+
+  function conferir() {
+    /* topo e botão do WhatsApp aparecem depois que o banner sai da tela */
+    const passou = window.scrollY > window.innerHeight * 0.7;
+    topo.classList.toggle('visivel', passou);
+    wpp.classList.toggle('visivel', passou);
+    if (!passou) menu.classList.remove('aberto');
+  }
+
+  window.addEventListener('scroll', conferir, { passive: true });
+  window.addEventListener('resize', conferir);
+  conferir();
+}
+
 /* ---------- menu do celular ---------------------------------------------- */
 
 function montarMenu() {
@@ -225,7 +312,10 @@ function montarHero() {
 document.title = CLINICA.nome + ' | ' + CLINICA.assinatura + ' em ' + CLINICA.cidade;
 
 montarHero();
-montarTopo();
+montarSlide2();
+montarTopo();          /* depois do slide 2, pra pegar a marca e o botão dele */
+montarCarrossel();
+montarTopoFlutuante();
 montarMenu();
 montarRedes();
 montarSelos();

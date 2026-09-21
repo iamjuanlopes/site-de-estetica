@@ -39,24 +39,36 @@
   </nav>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO — carrossel de dois slides ===== -->
 <section class="hero" id="inicio">
-  <div class="hero-claro">
-    <div>
-      <p class="rotulo">Estética facial e corporal</p>
-      <h1 class="display">Sua pele<br>merece<br>tempo</h1>
+  <div class="hero-trilho" id="hero-trilho">
+
+    <!-- slide 1: dividido ao meio -->
+    <div class="hero-slide slide-dividido">
+      <div class="hero-claro">
+        <div>
+          <p class="rotulo">Estética facial e corporal</p>
+          <h1 class="display">Sua pele<br>merece<br>tempo</h1>
+        </div>
+        <img class="hero-foto" id="hero-foto" src="img/hero-rosto.jpg" alt="Close de rosto com a pele cuidada">
+      </div>
+
+      <div class="hero-painel">
+        <a class="marca" href="#inicio" data-marca></a>
+        <div class="hero-painel-texto">
+          <p class="hero-frase">Horário marcado,<br>atendimento individual<br>e protocolo montado<br>pra sua pele</p>
+          <a class="btn btn-escuro" data-wpp="Oi! Queria marcar uma avaliação." data-wpp-icone>Marcar avaliação</a>
+        </div>
+      </div>
     </div>
-    <img class="hero-foto" id="hero-foto" src="img/hero-rosto.jpg" alt="Atendimento no Espaço Aurora">
+
+    <!-- slide 2: foto ocupando o banner inteiro, texto por cima -->
+    <div class="hero-slide slide-cheio" id="slide-cheio"></div>
+
   </div>
 
-  <div class="hero-painel">
-    <a class="marca" href="#inicio" data-marca></a>
-    <a class="seta" href="#servicos" aria-label="Ver serviços">&#8595;</a>
-    <div class="hero-painel-texto">
-      <p class="hero-frase">Horário marcado,<br>atendimento individual<br>e protocolo montado<br>pra sua pele</p>
-      <a class="btn btn-escuro" data-wpp="Oi! Queria marcar uma avaliação." data-wpp-icone>Marcar avaliação</a>
-    </div>
-  </div>
+  <button class="hero-seta" id="hero-seta" aria-label="Próximo banner">&#8594;</button>
+  <div class="hero-pontos" id="hero-pontos"></div>
 </section>
 
 <!-- ===== SELOS ===== -->

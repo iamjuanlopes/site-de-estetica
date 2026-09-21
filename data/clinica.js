@@ -27,6 +27,18 @@ const CLINICA = {
   fotoHeroRecorte: false,
   desenvolvidoPor: 'Éden',           // assinatura no rodapé
 
+  /* Segundo banner: foto ocupando a tela inteira com o texto por cima.
+     No título, a barra | marca onde a palavra quebra de linha — é o que dá
+     o ar editorial (AUTO / CUI / DADO). */
+  slide2: {
+    foto: 'hero-brilho.jpg',
+    fotoPequena: 'hero-brilho-700.jpg',
+    titulo: 'Auto|cui|dado',
+    subtitulo: 'também é rotina',
+    botao: 'Marcar avaliação',
+    mensagem: 'Oi! Queria marcar uma avaliação.',
+  },
+
   endereco: 'Rua das Palmeiras, 120 – Centro',
   cidadeUf: 'Resende – RJ, 27510-000',
   // Usado no botão "abrir no Google Maps"

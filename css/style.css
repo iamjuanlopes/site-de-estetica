@@ -72,7 +72,7 @@ section { padding: 64px 0; }
   font-size: 40px;
 }
 
-h1.display { font-size: 48px; font-weight: 200; letter-spacing: 0.06em; }
+h1.display { font-size: 42px; font-weight: 200; letter-spacing: 0.06em; }
 
 .display em { font-style: normal; font-weight: 400; color: var(--brand); }
 
@@ -140,13 +140,17 @@ p { margin: 0 0 14px; }
 
 /* ---------- topo --------------------------------------------------------- */
 
+/* o topo não aparece de cara: ele desce depois que o banner sai da tela */
 .topo {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 0; left: 0; right: 0;
   z-index: 50;
   background: var(--brand);
   box-shadow: 0 4px 18px rgba(26,26,26,.18);
+  transform: translateY(-100%);
+  transition: transform .3s ease;
 }
+.topo.visivel { transform: none; }
 
 /* o menu fica à esquerda e a marca à direita — a inversão é proposital */
 .topo-linha {
@@ -204,21 +208,160 @@ p { margin: 0 0 14px; }
 
 /* ---------- hero --------------------------------------------------------- */
 
-.hero { padding: 0; display: flex; flex-direction: column; }
+.hero { padding: 0; position: relative; }
 
-.hero-claro {
-  padding: 48px var(--margem) 52px;
+/* trilho que desliza pro lado. O scroll-snap faz o arraste no celular
+   funcionar sozinho, sem biblioteca nenhuma. */
+.hero-trilho {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.hero-trilho::-webkit-scrollbar { display: none; }
+
+/* cada banner ocupa uma tela: os dois têm a mesma altura, então o texto do
+   slide 2 nunca cai pra fora do campo de visão.
+   svh é a altura real da tela no celular, já descontando a barra do navegador. */
+.hero-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  /* altura definida (não só mínima): é o que permite a foto encolher
+     junto com a tela em vez de empurrar o painel pra fora */
+  height: 100vh;
+  height: 100svh;
+  min-height: 520px;
+}
+
+.slide-dividido { position: relative; }
+
+/* seta que avança o banner */
+.hero-seta {
+  position: absolute;
+  z-index: 20;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.65);
+  /* leve fundo escuro: a seta precisa aparecer tanto sobre o laranja
+     quanto sobre a parte clara da foto */
+  background: rgba(23,18,15,.22);
+  backdrop-filter: blur(2px);
+  color: #fff;
+  font-size: 22px;
+  font-weight: 200;
+  line-height: 1;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.hero-pontos {
+  position: absolute;
+  z-index: 20;
+  left: 0; right: 0;
+  bottom: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.ponto {
+  width: 38px; height: 22px;      /* alvo de toque confortável */
+  padding: 9px 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.ponto::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: rgba(255,255,255,.45);
+  transition: background .2s;
+}
+.ponto.ativo::before { background: #fff; }
+
+/* ---------- slide 2: foto ocupando o banner inteiro ---------------------- */
+
+.slide-cheio {
+  position: relative;
+  justify-content: flex-end;
+  min-height: 86vh;
+}
+
+.slide-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;   /* mantém o rosto no enquadramento */
+}
+
+/* véu que garante leitura do texto por cima da foto */
+.slide-veu {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(23,18,15,.30) 0%, rgba(23,18,15,.12) 40%, rgba(23,18,15,.72) 100%);
+}
+
+.marca-cheio {
+  position: absolute;
+  z-index: 3;
+  top: 22px;
+  right: var(--margem);
+}
+
+.slide-cheio-texto {
+  position: relative;
+  z-index: 3;
+  padding: 0 var(--margem) 56px;
+  color: #fff;
+}
+
+.slide-titulo {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 200;
+  letter-spacing: 0.06em;
+  line-height: 0.9;
+  margin-bottom: 18px;
+}
+
+.slide-sub {
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,.92);
+  margin-bottom: 24px;
+}
+
+.slide-cheio-texto .btn { max-width: 340px; }
+
+.hero-claro {
+  padding: 40px var(--margem) 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  flex: 1 1 auto;
+  min-height: 0;      /* deixa a foto encolher junto com a tela */
 }
 
 .hero h1 { margin-bottom: 0; }
 
 .hero-foto {
   width: 100%;
-  max-width: 320px;
-  aspect-ratio: 3 / 4;
+  flex: 1 1 auto;
+  min-height: 120px;
   object-fit: cover;
   /* fundo do painel da foto. Com recorte em PNG transparente, é essa cor que
      aparece atrás da pessoa — trocar aqui muda o fundo sem tocar na imagem. */
@@ -236,29 +379,19 @@ p { margin: 0 0 14px; }
 .hero-painel {
   background: var(--brand);
   color: #fff;
-  padding: 40px var(--margem);
+  padding: 26px var(--margem) 50px;   /* folga pros pontos do carrossel */
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 16px;
+  flex: 0 0 auto;
 }
 
 .hero-painel .marca { align-self: flex-start; font-size: 22px; }
 
-/* seta solta, sem círculo — como no site de referência */
-.seta {
-  width: 56px; height: 56px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 30px;
-  font-weight: 200;
-  line-height: 1;
-  text-decoration: none;
-  color: rgba(255,255,255,.85);
-  flex: 0 0 auto;
-}
 
 .hero-frase {
   text-transform: uppercase;
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 1.35;
   margin-bottom: 22px;
@@ -496,7 +629,12 @@ p { margin: 0 0 14px; }
 
 /* ---------- botão flutuante do WhatsApp ---------------------------------- */
 
+/* o botão flutuante só entra depois do banner, pra não tapar o CTA dele */
 .wpp-flutuante {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(.85);
+  transition: opacity .25s, transform .25s, visibility .25s;
   position: fixed;
   right: 16px;
   bottom: calc(16px + env(safe-area-inset-bottom));
@@ -508,6 +646,7 @@ p { margin: 0 0 14px; }
   box-shadow: 0 6px 20px rgba(26,26,26,.3);
   text-decoration: none;
 }
+.wpp-flutuante.visivel { opacity: 1; visibility: visible; transform: none; }
 .wpp-flutuante svg { width: 30px; height: 30px; fill: #fff; }
 
 /* ==========================================================================
@@ -557,12 +696,11 @@ p { margin: 0 0 14px; }
     transition: color .2s;
   }
 
-  /* o hero vira duas colunas e o painel ganha a diagonal */
-  .hero {
-    flex-direction: row;
-    min-height: calc(100vh - 64px);
-    position: relative;
-  }
+  /* no desktop o slide dividido vira duas colunas, com a divisão reta */
+  .hero-slide { height: 100vh; }
+  .slide-dividido { flex-direction: row; }
+  .hero-seta { right: 30px; width: 58px; height: 58px; font-size: 24px; }
+  .hero-pontos { bottom: 26px; }
   .hero-claro {
     flex: 1;
     display: flex;
@@ -574,6 +712,7 @@ p { margin: 0 0 14px; }
 
   /* a foto vira um painel vertical no centro, passando por cima da diagonal */
   .hero-foto {
+    flex: 0 0 auto;
     position: absolute;
     z-index: 5;
     top: 50%;
@@ -594,7 +733,7 @@ p { margin: 0 0 14px; }
   }
 
   /* retângulo deslocado atrás da foto, como uma moldura fora de registro */
-  .hero::after {
+  .slide-dividido::after {
     content: '';
     position: absolute;
     z-index: 4;
@@ -606,7 +745,6 @@ p { margin: 0 0 14px; }
     background: var(--rosa);
   }
   .hero-painel .marca { align-self: flex-end; }
-  .seta { align-self: flex-end; }
   .hero-painel-texto { margin-left: auto; text-align: right; }
   .hero-frase { font-size: 22px; }
 
@@ -615,6 +753,27 @@ p { margin: 0 0 14px; }
   .sobre-foto { height: 100%; min-height: 520px; }
 
   .servicos-grade { grid-template-columns: repeat(3, 1fr); }
+
+  /* slide 2: o texto sai do canto de baixo e vai pro centro-direita */
+  .slide-cheio { min-height: 100vh; justify-content: center; }
+  .slide-cheio-texto {
+    padding: 0 64px;
+    margin-left: 50%;
+    max-width: 520px;
+  }
+  .slide-titulo { font-size: clamp(70px, 7vw, 108px); margin-bottom: 26px; }
+  .slide-sub { font-size: 19px; margin-bottom: 32px; }
+  .slide-cheio-texto .btn { width: auto; }
+  .marca-cheio { top: 34px; right: 64px; }
+  .slide-foto { object-position: center 26%; }
+
+  /* no desktop o texto fica à direita, então o véu escurece esse lado
+     pra garantir leitura por cima de qualquer parte da foto */
+  .slide-veu {
+    background:
+      linear-gradient(to right, rgba(23,18,15,0) 30%, rgba(23,18,15,.46) 72%, rgba(23,18,15,.52) 100%),
+      linear-gradient(to bottom, rgba(23,18,15,.26) 0%, rgba(23,18,15,.10) 45%, rgba(23,18,15,.45) 100%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
